@@ -3,6 +3,7 @@ import { PodcastContext } from "./context/PodcastContext";
 import { formatDate } from "./utils/formatDate";
 import { genreService } from "./utils/genreService";
 import PodcastCard from "./components/PodcastCard";
+import PodcastGrid from "./components/PodcastGrid";
 
 function App() {
   const { podcasts, loading, error } = useContext(PodcastContext);
@@ -15,7 +16,7 @@ function App() {
     <>
       <h1>Podcasts</h1>
 
-      <PodcastCard podcast={podcasts[0]} />
+      <PodcastGrid podcasts={podcasts} />
     </>
   );
 }
