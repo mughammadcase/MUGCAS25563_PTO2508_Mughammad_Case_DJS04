@@ -13,8 +13,6 @@ export function PodcastProvider({ children }) {
       try {
         const data = await fetchPodcasts();
 
-        console.log("API DATA:", data);
-
         setPodcasts(data);
       } catch (err) {
         setError(err.message);

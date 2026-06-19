@@ -1,4 +1,5 @@
 import PodcastCard from "./PodcastCard";
+import styles from "./PodcastGrid.module.css";
 
 /**
  * Displays a responsive grid of podcast preview cards.
@@ -11,7 +12,7 @@ import PodcastCard from "./PodcastCard";
  */
 export default function PodcastGrid({ podcasts }) {
   return (
-    <section className="podcast-grid">
+    <section className={styles.grid}>
       {podcasts.map((podcast) => (
         <PodcastCard key={podcast.id} podcast={podcast} />
       ))}
