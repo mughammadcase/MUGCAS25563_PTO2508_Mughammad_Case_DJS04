@@ -1,5 +1,6 @@
 import { genreService } from "../utils/genreService";
 import { formatDate } from "../utils/formatDate";
+import styles from "./PodcastCard.module.css";
 
 /**
  * Displays a preview of a podcast including its artwork, title, season count, genres, and last updated date.
@@ -19,29 +20,25 @@ export default function PodcastCard({ podcast }) {
   const updatedDate = formatDate.format(podcast.updated);
 
   return (
-    <article className="podcast-card">
-      <img
-        src={podcast.image}
-        alt={podcast.title}
-        className="podcast-card-image"
-      />
+    <article className={styles.card}>
+      <img src={podcast.image} alt={podcast.title} className={styles.image} />
 
-      <div className="podcast-card-content">
-        <h2 className="podcast-card-title">{podcast.title}</h2>
+      <div className={styles.content}>
+        <h2 className={styles.title}>{podcast.title}</h2>
 
-        <p className="podcast-card-seasons">
+        <p className={styles.seasons}>
           {podcast.seasons} season{podcast.seasons !== 1 ? "s" : ""}
         </p>
 
-        <div className="podcast-card-genres">
+        <div className={styles.genres}>
           {genreNames.map((name) => (
-            <span key={name} className="genre-tag">
+            <span key={name} className={styles.genreTag}>
               {name}
             </span>
           ))}
         </div>
 
-        <p className="podcast-card-updated">{updatedDate}</p>
+        <p className={styles.updated}>{updatedDate}</p>
       </div>
     </article>
   );
