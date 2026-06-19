@@ -4,6 +4,7 @@ import { formatDate } from "./utils/formatDate";
 import { genreService } from "./utils/genreService";
 import PodcastCard from "./components/PodcastCard";
 import PodcastGrid from "./components/PodcastGrid";
+import Header from "./components/Header";
 
 function App() {
   const { podcasts, loading, error } = useContext(PodcastContext);
@@ -14,8 +15,7 @@ function App() {
 
   return (
     <>
-      <h1>Podcasts</h1>
-
+      <Header />
       <PodcastGrid podcasts={podcasts} />
     </>
   );
