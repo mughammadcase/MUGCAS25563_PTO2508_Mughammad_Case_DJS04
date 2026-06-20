@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { PodcastContext } from "./context/PodcastContext";
-import { formatDate } from "./utils/formatDate";
-import { genreService } from "./utils/genreService";
-import PodcastCard from "./components/PodcastCard";
 import PodcastGrid from "./components/PodcastGrid";
 import Header from "./components/Header";
 
 function App() {
-  const { podcasts, loading, error } = useContext(PodcastContext);
+  const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
+
+  console.log(searchTitle);
 
   if (loading) return <p>Loading...</p>;
 

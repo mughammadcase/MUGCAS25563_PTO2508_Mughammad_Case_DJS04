@@ -7,6 +7,7 @@ export function PodcastProvider({ children }) {
   const [podcasts, setPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
 
   useEffect(() => {
     async function loadPodcasts() {
@@ -28,6 +29,8 @@ export function PodcastProvider({ children }) {
     podcasts,
     loading,
     error,
+    searchTitle,
+    setSearchTitle,
   };
 
   return (
