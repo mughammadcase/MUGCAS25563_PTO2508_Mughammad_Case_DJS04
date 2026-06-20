@@ -25,9 +25,28 @@ export function PodcastProvider({ children }) {
     loadPodcasts();
   }, []);
 
-  const podcasts = allPodcasts.filter((podcast) =>
+  const filteredPodcasts = allPodcasts.filter((podcast) =>
     podcast.title.toLowerCase().includes(searchTitle.toLowerCase().trim()),
   );
+
+  const podcasts = [...filteredPodcasts].sort((a, b) => {
+    switch (sortOrder) {
+      case "date-desc":
+        return new Date(b.updated) - new Date(a.updated);
+
+      case "date-asc":
+        return new Date(a.updated) - new Date(b.updated);
+
+      case "title-asc":
+        return a.title.localeCompare(b.title);
+
+      case "title-desc":
+        return b.title.localeCompare(a.title);
+
+      default:
+        return 0;
+    }
+  });
 
   const value = {
     podcasts,

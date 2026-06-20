@@ -9,7 +9,6 @@ import styles from "./App.module.css";
 function App() {
   const { podcasts, loading, error, searchTitle, sortOrder } =
     useContext(PodcastContext);
-  console.log(sortOrder);
 
   if (loading) return <p>Loading...</p>;
 
