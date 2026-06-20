@@ -7,8 +7,6 @@ import SearchBar from "./components/SearchBar";
 function App() {
   const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
 
-  console.log(podcasts.length);
-
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>{error}</p>;
@@ -17,7 +15,17 @@ function App() {
     <>
       <Header />
       <SearchBar />
-      <PodcastGrid podcasts={podcasts} />
+
+      {podcasts.length > 0 ? (
+        <PodcastGrid podcasts={podcasts} />
+      ) : (
+        <div>
+          <p>
+            No podcasts found
+            {searchTitle.trim() && ` for "${searchTitle}"`}.
+          </p>
+        </div>
+      )}
     </>
   );
 }
