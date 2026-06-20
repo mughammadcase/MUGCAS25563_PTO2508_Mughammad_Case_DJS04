@@ -3,6 +3,8 @@ import { PodcastContext } from "./context/PodcastContext";
 import PodcastGrid from "./components/PodcastGrid";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
+import SortSelect from "./components/SortSelect";
+import styles from "./App.module.css";
 
 function App() {
   const { podcasts, loading, error, searchTitle, sortOrder } =
@@ -16,7 +18,11 @@ function App() {
   return (
     <>
       <Header />
-      <SearchBar />
+
+      <section className={styles.controls}>
+        <SearchBar />
+        <SortSelect />
+      </section>
 
       {podcasts.length > 0 ? (
         <PodcastGrid podcasts={podcasts} />
