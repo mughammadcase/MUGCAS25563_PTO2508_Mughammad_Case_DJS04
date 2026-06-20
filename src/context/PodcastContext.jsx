@@ -8,6 +8,7 @@ export function PodcastProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
+  const [sortOrder, setSortOrder] = useState("date-desc");
 
   useEffect(() => {
     async function loadPodcasts() {
@@ -34,6 +35,8 @@ export function PodcastProvider({ children }) {
     error,
     searchTitle,
     setSearchTitle,
+    sortOrder,
+    setSortOrder,
   };
 
   return (

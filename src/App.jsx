@@ -5,7 +5,9 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 
 function App() {
-  const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
+  const { podcasts, loading, error, searchTitle, sortOrder } =
+    useContext(PodcastContext);
+  console.log(sortOrder);
 
   if (loading) return <p>Loading...</p>;
 
