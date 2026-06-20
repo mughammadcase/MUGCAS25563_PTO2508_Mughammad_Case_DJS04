@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { PodcastContext } from "./context/PodcastContext";
 import PodcastGrid from "./components/PodcastGrid";
 import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <Header />
+      <SearchBar />
       <PodcastGrid podcasts={podcasts} />
     </>
   );
