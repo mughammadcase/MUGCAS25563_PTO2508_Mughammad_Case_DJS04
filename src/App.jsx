@@ -7,7 +7,7 @@ import SearchBar from "./components/SearchBar";
 function App() {
   const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
 
-  console.log(searchTitle);
+  console.log(podcasts.length);
 
   if (loading) return <p>Loading...</p>;
 

@@ -4,7 +4,7 @@ import { fetchPodcasts } from "../api/fetchPodcasts";
 export const PodcastContext = createContext();
 
 export function PodcastProvider({ children }) {
-  const [podcasts, setPodcasts] = useState([]);
+  const [allPodcasts, setAllPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
@@ -13,8 +13,7 @@ export function PodcastProvider({ children }) {
     async function loadPodcasts() {
       try {
         const data = await fetchPodcasts();
-
-        setPodcasts(data);
+        setAllPodcasts(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -24,6 +23,10 @@ export function PodcastProvider({ children }) {
 
     loadPodcasts();
   }, []);
+
+  const podcasts = allPodcasts.filter((podcast) =>
+    podcast.title.toLowerCase().includes(searchTitle.toLowerCase().trim()),
+  );
 
   const value = {
     podcasts,
