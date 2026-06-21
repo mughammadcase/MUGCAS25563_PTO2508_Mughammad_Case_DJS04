@@ -26,9 +26,16 @@ export function PodcastProvider({ children }) {
     loadPodcasts();
   }, []);
 
-  const filteredPodcasts = allPodcasts.filter((podcast) =>
-    podcast.title.toLowerCase().includes(searchTitle.toLowerCase().trim()),
-  );
+  const filteredPodcasts = allPodcasts.filter((podcast) => {
+    const matchesSearch = podcast.title
+      .toLowerCase()
+      .includes(searchTitle.toLowerCase().trim());
+
+    const matchesGenre =
+      selectedGenre === "all" || podcast.genres.includes(Number(selectedGenre));
+
+    return matchesSearch && matchesGenre;
+  });
 
   const podcasts = [...filteredPodcasts].sort((a, b) => {
     switch (sortOrder) {

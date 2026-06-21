@@ -11,8 +11,6 @@ function App() {
   const { podcasts, loading, error, searchTitle, selectedGenre } =
     useContext(PodcastContext);
 
-  console.log(selectedGenre);
-
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>{error}</p>;
