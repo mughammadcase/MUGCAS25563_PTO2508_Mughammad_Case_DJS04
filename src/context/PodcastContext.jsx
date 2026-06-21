@@ -67,7 +67,7 @@ export function PodcastProvider({ children }) {
   // podcasts = just current page slice
   const podcasts = sortedPodcasts.slice(startIndex, endIndex);
 
-  // Resets user back to page 1 when result criteria changes
+  // Resets user back to page 1 when result criteria
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTitle, sortOrder, selectedGenre]);

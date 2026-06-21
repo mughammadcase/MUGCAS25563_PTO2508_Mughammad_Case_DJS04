@@ -5,36 +5,56 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import SortSelect from "./components/SortSelect";
 import GenreFilter from "./components/GenreFilter";
+import Pagination from "./components/Pagination";
 import styles from "./App.module.css";
 
 function App() {
-  const { podcasts, loading, error, searchTitle, selectedGenre } =
-    useContext(PodcastContext);
-
-  if (loading) return <p>Loading...</p>;
-
-  if (error) return <p>{error}</p>;
+  const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
 
   return (
     <>
       <Header />
 
-      <section className={styles.controls}>
-        <SearchBar />
-        <SortSelect />
-        <GenreFilter />
-      </section>
+      <main className={styles.appMain}>
+        <section className={styles.controls}>
+          <SearchBar />
+          <SortSelect />
+          <GenreFilter />
+        </section>
 
-      {podcasts.length > 0 ? (
-        <PodcastGrid podcasts={podcasts} />
-      ) : (
-        <div>
-          <p>
-            No podcasts found
-            {searchTitle.trim() && ` for "${searchTitle}"`}.
-          </p>
-        </div>
-      )}
+        {loading && (
+          <section className={styles.messageContainer} role="status">
+            <div className={styles.spinner}></div>
+            <p>Loading podcasts...</p>
+          </section>
+        )}
+
+        {!loading && error && (
+          <section className={styles.messageContainer} role="alert">
+            <p className={styles.errorMessage}>
+              Error loading podcasts: {error}
+            </p>
+          </section>
+        )}
+
+        {!loading && !error && podcasts.length > 0 && (
+          <>
+            <PodcastGrid podcasts={podcasts} />
+            <Pagination />
+          </>
+        )}
+
+        {!loading && !error && podcasts.length === 0 && (
+          <section className={styles.messageContainer}>
+            <h2>No podcasts found</h2>
+            <p>
+              {searchTitle.trim()
+                ? `No podcasts matched "${searchTitle}". Try a different search or filter.`
+                : "No podcasts are available right now."}
+            </p>
+          </section>
+        )}
+      </main>
     </>
   );
 }
