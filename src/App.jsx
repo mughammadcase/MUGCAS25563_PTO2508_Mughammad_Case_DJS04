@@ -16,7 +16,8 @@ import styles from "./App.module.css";
  * @returns {JSX.Element} Podcast application UI.
  */
 function App() {
-  const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
+  const { podcasts, loading, error, searchTitle, selectedGenre } =
+    useContext(PodcastContext);
 
   return (
     <>
@@ -55,8 +56,8 @@ function App() {
           <section className={styles.messageContainer}>
             <h2>No podcasts found</h2>
             <p>
-              {searchTitle.trim()
-                ? `No podcasts matched "${searchTitle}". Try a different search or filter.`
+              {searchTitle.trim() || selectedGenre !== "all"
+                ? "No podcasts matched your current search or filter. Try adjusting your search term or selected genre."
                 : "No podcasts are available right now."}
             </p>
           </section>

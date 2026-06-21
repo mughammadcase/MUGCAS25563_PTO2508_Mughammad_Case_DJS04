@@ -32,7 +32,7 @@
   line-height: 1.5;
 }
 
-.errorMessage {
+.messageContainer .errorMessage {
   color: var(--color-error);
   font-weight: 600;
 }
