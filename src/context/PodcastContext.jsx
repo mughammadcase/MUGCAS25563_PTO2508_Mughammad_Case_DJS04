@@ -10,6 +10,9 @@ export function PodcastProvider({ children }) {
   const [searchTitle, setSearchTitle] = useState("");
   const [sortOrder, setSortOrder] = useState("date-desc");
   const [selectedGenre, setSelectedGenre] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1); // For tracking which page the user is on.
+
+  const PODCASTS_PER_PAGE = 12;
 
   useEffect(() => {
     async function loadPodcasts() {
@@ -37,7 +40,8 @@ export function PodcastProvider({ children }) {
     return matchesSearch && matchesGenre;
   });
 
-  const podcasts = [...filteredPodcasts].sort((a, b) => {
+  // sortedPodcasts = full processed list
+  const sortedPodcasts = [...filteredPodcasts].sort((a, b) => {
     switch (sortOrder) {
       case "date-desc":
         return new Date(b.updated) - new Date(a.updated);
@@ -56,6 +60,18 @@ export function PodcastProvider({ children }) {
     }
   });
 
+  const totalPages = Math.ceil(sortedPodcasts.length / PODCASTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * PODCASTS_PER_PAGE;
+  const endIndex = startIndex + PODCASTS_PER_PAGE;
+
+  // podcasts = just current page slice
+  const podcasts = sortedPodcasts.slice(startIndex, endIndex);
+
+  // Resets user back to page 1 when result criteria changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTitle, sortOrder, selectedGenre]);
+
   const value = {
     podcasts,
     loading,
@@ -66,6 +82,10 @@ export function PodcastProvider({ children }) {
     setSortOrder,
     selectedGenre,
     setSelectedGenre,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    totalResults: sortedPodcasts.length,
   };
 
   return (
