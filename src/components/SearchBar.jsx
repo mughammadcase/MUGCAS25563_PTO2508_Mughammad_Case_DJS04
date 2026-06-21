@@ -16,6 +16,9 @@ export default function SearchBar() {
 
   return (
     <div className={styles.searchBar}>
+      <label htmlFor="podcast-search" className={styles.label}>
+        Search podcasts:
+      </label>
       <input
         id="podcast-search"
         type="text"

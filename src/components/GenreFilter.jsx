@@ -18,7 +18,7 @@ export default function GenreFilter() {
   return (
     <div className={styles.genreFilter}>
       <label htmlFor="genre-filter" className={styles.label}>
-        Filter by genre
+        Genre filter:
       </label>
 
       <select
