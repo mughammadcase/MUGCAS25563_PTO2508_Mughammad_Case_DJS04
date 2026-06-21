@@ -8,6 +8,13 @@ import GenreFilter from "./components/GenreFilter";
 import Pagination from "./components/Pagination";
 import styles from "./App.module.css";
 
+/**
+ * Main application
+ *
+ * Renders the podcast browsing interface, including controls, loading/error states, podcast results, pagination, and empty states.
+ *
+ * @returns {JSX.Element} Podcast application UI.
+ */
 function App() {
   const { podcasts, loading, error, searchTitle } = useContext(PodcastContext);
 

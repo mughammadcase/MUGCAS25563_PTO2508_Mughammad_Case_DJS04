@@ -3,6 +3,19 @@ import { fetchPodcasts } from "../api/fetchPodcasts";
 
 export const PodcastContext = createContext();
 
+/**
+ * Provides global podcast state and derived podcast data to the application.
+ *
+ * This provider is responsible for:
+ * - fetching podcast data from the API
+ * - storing loading and error state
+ * - managing search, sorting, genre filter, and pagination state
+ * - deriving the visible podcast list by applying filtering, sorting, and pagination
+ *
+ * @param {Object} props - Component props.
+ * @param {React.ReactNode} props.children - Child components rendered inside the provider.
+ * @returns {JSX.Element} Podcast context provider.
+ */
 export function PodcastProvider({ children }) {
   const [allPodcasts, setAllPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
