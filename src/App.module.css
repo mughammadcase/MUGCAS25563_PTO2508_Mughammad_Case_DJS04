@@ -3,16 +3,11 @@
 }
 
 .controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
   gap: 1rem;
   align-items: end;
-  padding: 1rem;
-  flex-wrap: wrap;
-}
-
-.controls > * {
-  flex: 1;
-  min-width: 240px;
+  padding: 1.5rem 2rem 1rem;
 }
 
 .messageContainer {
@@ -55,5 +50,12 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 426px) {
+  .controls {
+    grid-template-columns: 1fr;
+    padding: 1rem;
   }
 }

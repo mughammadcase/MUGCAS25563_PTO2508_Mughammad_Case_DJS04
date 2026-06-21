@@ -17,14 +17,15 @@ export default function SearchBar() {
   return (
     <div className={styles.searchBar}>
       <label htmlFor="podcast-search" className={styles.label}>
-        Search podcasts:
+        Search:
       </label>
+
       <input
         id="podcast-search"
         type="text"
         value={searchTitle}
         onChange={handleChange}
-        placeholder="Search"
+        placeholder="Search podcasts"
         className={styles.input}
       />
     </div>
